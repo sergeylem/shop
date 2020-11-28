@@ -1,6 +1,5 @@
-import Product from './productModel'
-
 const mongoose = require('mongoose')
+const Product = require('./productModel')
 const orderSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -21,11 +20,11 @@ const orderSchema = mongoose.Schema({
     }
   ],
   shippingAddress: {
-      address: { type: String, required: true },
-      city: { type: Number, required: true },
-      postalCode: { type: String, required: true },
-      country: { type: Number, required: true }
-    },
+    address: { type: String, required: true },
+    city: { type: Number, required: true },
+    postalCode: { type: String, required: true },
+    country: { type: Number, required: true }
+  },
   paymentMethod: {
     type: String,
     required: true
@@ -73,4 +72,5 @@ const orderSchema = mongoose.Schema({
 
 const Order = mongoose.model('Order', orderSchema)
 
-export default Order
+// export default Order
+module.exports = Order

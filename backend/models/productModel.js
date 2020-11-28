@@ -1,19 +1,10 @@
 const mongoose = require('mongoose')
 
 const reviewSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  rating: {
-    type: Number,
-    required: true
-  },
-  comment: {
-    type: String,
-    required: true
-  }
-},{
+  name: { type: String, required: true },
+  rating: { type: Number, required: true },
+  comment: { type: String, required: true }
+}, {
   timestamps: true
 })
 
@@ -70,4 +61,5 @@ const productSchema = mongoose.Schema({
 
 const Product = mongoose.model('Product', productSchema)
 
-export default Product
+// export default Product
+module.exports = Product

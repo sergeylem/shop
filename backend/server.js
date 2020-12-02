@@ -3,9 +3,13 @@ const dotenv = require('dotenv')
 const colors = require('colors')
 
 const app = express()
+
+app.use(express.json()) //that will allow us to accept JSON data in the body
+
 const connectDB = require('./config/db.js')
 
 const productRoutes = require('./routes/productRoutes')
+const userRoutes = require('./routes/userRoutes')
 
 dotenv.config()
 
@@ -16,6 +20,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT || 5000 
 

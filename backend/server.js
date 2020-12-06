@@ -1,6 +1,8 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const colors = require('colors')
+const { notFound } = require('./middleware/errorMiddleware')
+const { errorHandler } = require('./middleware/errorMiddleware')
 
 const app = express()
 
@@ -22,7 +24,10 @@ app.get('/', (req, res) => {
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 
-const PORT = process.env.PORT || 5000 
+app.use(notFound)
+app.use(errorHandler)
+
+const PORT = process.env.PORT || 5000
 
 
 app.listen(PORT, console.log(

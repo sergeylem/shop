@@ -45,7 +45,7 @@ exports.createProduct = asyncHandler(async (req, res) => {
     price: 0,
     user: req.user._id,
     image: '/images/sample.jpg',
-    brand: 'Dample brand',
+    brand: 'Sample brand',
     category: 'Sample category',
     countInStock: 0,
     numReviews: 0,
@@ -71,7 +71,7 @@ exports.updateProduct = asyncHandler(async (req, res) => {
     countInStock,
   } = req.body
 
-  const product = Product.findById(req.params.id)
+  const product = await Product.findById(req.params.id)
 
   if (product) {
     product.name = name
@@ -89,4 +89,3 @@ exports.updateProduct = asyncHandler(async (req, res) => {
     throw new Error('Product not found')
   }
 })
-

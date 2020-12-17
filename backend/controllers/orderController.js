@@ -45,7 +45,7 @@ exports.getOrderById = asyncHandler(async (req, res) => {
     'name email'
   )
 
-  if(order) {
+  if (order) {
     res.json(order)
   } else {
     res.status(404)
@@ -59,7 +59,7 @@ exports.getOrderById = asyncHandler(async (req, res) => {
 exports.updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
 
-  if(order) {
+  if (order) {
     order.isPaid = true
     order.paidAt = Date.now()
     order.paymentResult = {
@@ -75,3 +75,12 @@ exports.updateOrderToPaid = asyncHandler(async (req, res) => {
     throw new Error('Order not found')
   }
 })
+
+// @desc    Get all orders
+// @route   GET /api/orders
+// @access  Private/Admin
+exports.getOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({}).populate('user', 'id name')
+  res.json(orders)
+})
+

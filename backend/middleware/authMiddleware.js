@@ -1,8 +1,12 @@
-const jwt = require('jsonwebtoken')
-const asyncHandler = require('express-async-handler')
-const User = require('../models/userModel')
+// const jwt = require('jsonwebtoken')
+// const asyncHandler = require('express-async-handler')
+// const User = require('../models/userModel')
 
-exports.protect = asyncHandler(async (req, res, next) => {
+import jwt from 'jsonwebtoken'
+import asyncHandler from 'express-async-handler'
+import User from '../models/userModel.js'
+
+export const protect = asyncHandler(async (req, res, next) => {
   let token
 
   if (
@@ -30,7 +34,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
   }
 })
 
-exports.admin = (req, res, next) => {
+export const admin = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next()
   } else {

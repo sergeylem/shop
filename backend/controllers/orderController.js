@@ -1,10 +1,13 @@
-const asyncHandler = require('express-async-handler')
-const Order = require('../models/orderModel')
+// const asyncHandler = require('express-async-handler')
+// const Order = require('../models/orderModel')
+
+import asyncHandler from 'express-async-handler'
+import Order from '../models/orderModel.js'
 
 // @desc    Create new order
 // @route   POST /api/orders
 // @access  Private
-exports.addOrderItems = asyncHandler(async (req, res) => {
+ export const addOrderItems = asyncHandler(async (req, res) => {
   const {
     orderItems,
     shippingAddress,
@@ -39,7 +42,7 @@ exports.addOrderItems = asyncHandler(async (req, res) => {
 // @desc    Get order by ID
 // @route   GET /api/orders/:id
 // @access  Private
-exports.getOrderById = asyncHandler(async (req, res) => {
+export const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
     'user',
     'name email'
@@ -56,7 +59,7 @@ exports.getOrderById = asyncHandler(async (req, res) => {
 // @desc    Update order to paid
 // @route   GET /api/orders/:id/pay
 // @access  Private
-exports.updateOrderToPaid = asyncHandler(async (req, res) => {
+export const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
 
   if (order) {
@@ -79,8 +82,7 @@ exports.updateOrderToPaid = asyncHandler(async (req, res) => {
 // @desc    Get all orders
 // @route   GET /api/orders
 // @access  Private/Admin
-exports.getOrders = asyncHandler(async (req, res) => {
+export const getOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find({}).populate('user', 'id name')
   res.json(orders)
 })
-

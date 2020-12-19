@@ -7,7 +7,7 @@ import Order from '../models/orderModel.js'
 // @desc    Create new order
 // @route   POST /api/orders
 // @access  Private
- export const addOrderItems = asyncHandler(async (req, res) => {
+export const addOrderItems = asyncHandler(async (req, res) => {
   const {
     orderItems,
     shippingAddress,
@@ -77,6 +77,14 @@ export const updateOrderToPaid = asyncHandler(async (req, res) => {
     res.status(404)
     throw new Error('Order not found')
   }
+})
+
+// @desc    Get logged in user orders
+// @route   GET /api/orders/myorders
+// @access  Private
+export const getMyOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({ user: req.user._id })
+  res.json(orders)
 })
 
 // @desc    Update order to delivered

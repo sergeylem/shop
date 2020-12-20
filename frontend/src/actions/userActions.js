@@ -11,7 +11,6 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
   USER_DETAILS_RESET,
-  ORDER_LIST_MY_RESET,
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
@@ -26,6 +25,7 @@ import {
   USER_UPDATE_SUCCESS,
   USER_UPDATE_FAIL
 } from "../constants/userConstants"
+import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 
 export const login = (email, password) => async (dispatch) => {
   try {
